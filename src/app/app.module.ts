@@ -9,6 +9,7 @@ import { InstructorHomeComponent } from './instructor-home/instructor-home.compo
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './instructor-home/header/header.component';
+import { SideBarComponent } from './instructor-home/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderComponent } from './instructor-home/header/header.component';
     InstructorHomeComponent,
     LoginComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,
