@@ -4,15 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EmptyRouteComponent } from './empty-route/empty-route.component';
 import { InstructorHomeComponent } from './instructor-home/instructor-home.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
-  {path: 'instructor', component: InstructorHomeComponent},
-  {path: '**', component: EmptyRouteComponent}
+  {
+    path: 'instructor', children: [
+      { path: '', component: InstructorHomeComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
+    ]
+  },
+  { path: '**', component: EmptyRouteComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
