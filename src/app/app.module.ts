@@ -11,6 +11,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './instructor-home/header/header.component';
 import { SideBarComponent } from './instructor-home/side-bar/side-bar.component';
 import { FormsModule } from '@angular/forms';
+import { PasswordValidatingDirective } from './shared/directives/password-validate.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     HeaderComponent,
-    SideBarComponent
+    SideBarComponent,
+    PasswordValidatingDirective
   ],
   imports: [
     BrowserModule,

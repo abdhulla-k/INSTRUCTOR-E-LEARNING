@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ControllerService } from 'src/app/controller.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,5 +10,18 @@ export class SideBarComponent {
   toggle = false; // to controll the side bar
   loggedIn = false;
 
-  closeNav() {}
+  constructor(private controllService: ControllerService) { }
+
+  ngOnInit(): void {
+    this.controllService.sideNavToggler.subscribe(() => {
+      // change the value of toggle varible
+      console.log('hi')
+      this.toggle = !this.toggle;
+    })
+  }
+
+  // to closs the side bar
+  closeNav() {
+    this.toggle = false;
+  }
 }
