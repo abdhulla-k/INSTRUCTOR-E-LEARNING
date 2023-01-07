@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
+import * as AuthActions from '../store/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,14 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
 
   errorMessage = false;
-  login(formData: NgForm) {
 
+  constructor( private store: Store) {}
+  login(formData: NgForm) {
+    if(formData.valid) {
+      this.errorMessage = false;
+      this.store.dispatch(new AuthActions.LoginStart(formData.value));
+    } else {
+      this.errorMessage = true;
+    }
   }
 }
