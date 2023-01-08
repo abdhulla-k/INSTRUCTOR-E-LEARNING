@@ -7,6 +7,7 @@ import { switchMap, map } from 'rxjs/operators';
 import * as AuthActions from './auth.actions';
 
 type loginResponse = { jwtToken: string, message: string, loggedIn: boolean, time: number };
+type singupResponse = { sigupStatus: boolean, message: string };
 
 @Injectable()
 export class AuthEffects {
@@ -24,6 +25,7 @@ export class AuthEffects {
                     )
                     .pipe(
                         map(response => {
+                          console.log(response)
                             // Dispatch a success action with the response data
                             if (response.jwtToken) {
                                 // save the token in local storage
@@ -45,6 +47,37 @@ export class AuthEffects {
             })
         )
     );
+
+    signup$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.SIGNUP_START),
+      switchMap((authData: AuthActions.SignupStart) => {
+        console.log('started signing up')
+        return this.http
+          .post<singupResponse>(
+            `${this.baseRoute}/singup`,
+            {
+              name: authData.payload.name,
+              email: authData.payload.email,
+              password: authData.payload.password
+            }
+          )
+          .pipe(
+            map(response => {
+              console.log('ended')
+              // Dispatch a success action with the response data
+              if (response.sigupStatus) {
+                // navigate to instructor login
+                this.router.navigate(['/instructor/login']);
+                return new AuthActions.SignupEnd(true);
+              } else {
+                return new AuthActions.SignupEnd(false);
+              }
+            })
+          )
+      })
+    )
+  );
 
     baseRoute = 'http://localhost:3000/instructor';
 
