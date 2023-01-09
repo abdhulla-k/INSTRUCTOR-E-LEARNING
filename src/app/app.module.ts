@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { PasswordValidatingDirective } from './shared/directives/password-validate.directive';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthEffects } from './auth/store/auth.effects';
     SignupComponent,
     HeaderComponent,
     SideBarComponent,
-    PasswordValidatingDirective
+    PasswordValidatingDirective,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { EmptyRouteComponent } from './empty-route/empty-route.component';
 import { InstructorHomeComponent } from './instructor-home/instructor-home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: '', component: InstructorHomeComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
+      { path: 'verify/:id/:token', component: VerifyEmailComponent }
     ]
   },
   { path: '**', component: EmptyRouteComponent }

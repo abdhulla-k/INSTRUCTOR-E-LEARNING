@@ -1,12 +1,26 @@
 import { Action } from "@ngrx/store"
 
 import { authData } from '../../shared/types/auth-data';
-import { singupData } from '../../shared/types/signup-type';
 
+export const VERIFY_EMAIL_START = '[Auth] Verify Email Request'
+export const VERIFY_EMAIL_COMPLETED = '[Auth] Verify Email Response Got'
 export const LOGIN_START = '[Auth] Login started';
 export const LOGIN_END = '[Auth] Login ended';
 export const SIGNUP_START = '[Auth] Signup started';
 export const SIGNUP_END = '[Auth] Sgnup ended';
+
+export class VerifyEmailStart implements Action {
+    readonly type = VERIFY_EMAIL_START;
+    constructor (public payload: {
+        id: string,
+        token: string
+    }) {}
+}
+
+export class VerificationConplete implements Action {
+    readonly type = VERIFY_EMAIL_COMPLETED;
+    constructor (public payload: boolean) {}
+}
 
 export class LoginStart implements Action {
     readonly type: string = LOGIN_START;
@@ -34,6 +48,8 @@ export class SignupEnd implements Action {
 }
 
 export type AuthActions =
+    VerifyEmailStart |
+    VerificationConplete |
     LoginStart |
     LoginEnd |
     SignupStart |

@@ -8,6 +8,7 @@ import * as AuthActions from './auth.actions';
 
 type loginResponse = { jwtToken: string, message: string, loggedIn: boolean, time: number };
 type singupResponse = { sigupStatus: boolean, message: string };
+type emailVerifyResponse = { message: string, status: boolean }
 
 @Injectable()
 export class AuthEffects {
@@ -29,7 +30,7 @@ export class AuthEffects {
                             // Dispatch a success action with the response data
                             if (response.jwtToken) {
                                 // save the token in local storage
-                                localStorage.setItem('userData', JSON.stringify(response))
+                                localStorage.setItem('instructorData', JSON.stringify(response))
                                 // set a timer to clear the local Storage
                                 setTimeout(() => {
                                     localStorage.clear();
@@ -72,6 +73,32 @@ export class AuthEffects {
                 return new AuthActions.SignupEnd(true);
               } else {
                 return new AuthActions.SignupEnd(false);
+              }
+            })
+          )
+      })
+    )
+  );
+
+  verifyEmail$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.VERIFY_EMAIL_START),
+      switchMap((verificationData: AuthActions.VerifyEmailStart) => {
+        return this.http
+          .get<emailVerifyResponse>(
+            `${this.baseRoute}/verify/${verificationData.payload.id}/${verificationData.payload.token}`
+          )
+          .pipe(
+            map(response => {
+              // Check verified or not
+              if (response.status) {
+                console.log(response)
+                // change the status of verified
+                return new AuthActions.VerificationConplete(true);
+              } else {
+                // change the status of verified
+                console.log(response)
+                return new AuthActions.VerificationConplete(false);
               }
             })
           )
