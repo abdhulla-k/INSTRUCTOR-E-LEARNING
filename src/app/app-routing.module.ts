@@ -7,13 +7,14 @@ import { InstructorHomeComponent } from './instructor-home/instructor-home.compo
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'instructor', children: [
       { path: '', component: InstructorHomeComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
+      { path: 'login', canActivate: [AuthGuard], component: LoginComponent },
+      { path: 'signup', canActivate: [AuthGuard], component: SignupComponent },
       { path: 'verify/:id/:token', component: VerifyEmailComponent }
     ]
   },
