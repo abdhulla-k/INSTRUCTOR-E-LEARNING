@@ -20,6 +20,7 @@ import { AuthEffects } from './auth/store/auth.effects';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
+import { CourseComponent } from './instructor-home/courses/course/course.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DashboardComponent } from './instructor-home/dashboard/dashboard.compon
     PasswordValidatingDirective,
     VerifyEmailComponent,
     CoursesComponent,
-    DashboardComponent
+    DashboardComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
