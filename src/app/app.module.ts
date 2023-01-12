@@ -18,6 +18,7 @@ import { PasswordValidatingDirective } from './shared/directives/password-valida
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
+import { CoursesComponent } from './instructor-home/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
     HeaderComponent,
     SideBarComponent,
     PasswordValidatingDirective,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    CoursesComponent
   ],
   imports: [
     BrowserModule,
