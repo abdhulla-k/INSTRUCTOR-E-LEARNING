@@ -19,6 +19,7 @@ import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
+import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CoursesComponent } from './instructor-home/courses/courses.component';
     SideBarComponent,
     PasswordValidatingDirective,
     VerifyEmailComponent,
-    CoursesComponent
+    CoursesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

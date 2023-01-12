@@ -10,13 +10,15 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
 import { AuthGuard } from './auth-guards/auth-guard.service';
 import { HomeAuthGuard } from './auth-guards/home-protect.service';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
+import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: 'instructor', children: [
       {
         path: '', canActivate: [HomeAuthGuard], component: InstructorHomeComponent, children: [
-          { path: 'myCourses', component: CoursesComponent }
+          { path: '', component: DashboardComponent },
+          { path: 'myCourses', component: CoursesComponent },
         ]
       },
       { path: 'login', canActivate: [AuthGuard], component: LoginComponent },
