@@ -12,44 +12,44 @@ type emailVerifyResponse = { message: string, status: boolean }
 
 @Injectable()
 export class AuthEffects {
-    login$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(AuthActions.LOGIN_START),
-            switchMap((authData: AuthActions.LoginStart) => {
-                return this.http
-                    .post<loginResponse>(
-                        `${this.baseRoute}/login`,
-                        {
-                            email: authData.payload.email,
-                            password: authData.payload.password
-                        }
-                    )
-                    .pipe(
-                        map(response => {
-                          console.log(response)
-                            // Dispatch a success action with the response data
-                            if (response.jwtToken) {
-                                // save the token in local storage
-                                localStorage.setItem('instructorData', JSON.stringify(response))
-                                // set a timer to clear the local Storage
-                                setTimeout(() => {
-                                    localStorage.clear();
-                                }, response.time)
-                                // navigate to user home
-                                this.router.navigate(['/instructor/']);
-                                // make loggedInStatus true. Because login process successfully completed
-                                return new AuthActions.LoginEnd(true);
-                            } else {
-                                // make loggedInStatus false. Because login failed
-                                return new AuthActions.LoginEnd(false);
-                            }
-                        })
-                    )
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.LOGIN_START),
+      switchMap((authData: AuthActions.LoginStart) => {
+        return this.http
+          .post<loginResponse>(
+            `${this.baseRoute}/login`,
+            {
+              email: authData.payload.email,
+              password: authData.payload.password
+            }
+          )
+          .pipe(
+            map(response => {
+              console.log(response)
+              // Dispatch a success action with the response data
+              if (response.jwtToken) {
+                // save the token in local storage
+                localStorage.setItem('instructorData', JSON.stringify(response))
+                // set a timer to clear the local Storage
+                setTimeout(() => {
+                  localStorage.clear();
+                }, response.time)
+                // navigate to user home
+                this.router.navigate(['/instructor/']);
+                // make loggedInStatus true. Because login process successfully completed
+                return new AuthActions.LoginEnd(true);
+              } else {
+                // make loggedInStatus false. Because login failed
+                return new AuthActions.LoginEnd(false);
+              }
             })
-        )
-    );
+          )
+      })
+    )
+  );
 
-    signup$ = createEffect(() =>
+  signup$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.SIGNUP_START),
       switchMap((authData: AuthActions.SignupStart) => {
@@ -106,7 +106,7 @@ export class AuthEffects {
     )
   );
 
-    baseRoute = 'http://localhost:3000/instructor';
+  baseRoute = 'http://localhost:3000/instructor';
 
-    constructor(private actions$: Actions, private http: HttpClient, private router: Router) { }
+  constructor(private actions$: Actions, private http: HttpClient, private router: Router) { }
 }

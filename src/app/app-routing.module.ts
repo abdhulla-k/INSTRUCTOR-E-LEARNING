@@ -11,6 +11,7 @@ import { AuthGuard } from './auth-guards/auth-guard.service';
 import { HomeAuthGuard } from './auth-guards/home-protect.service';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
+import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
         path: '', canActivate: [HomeAuthGuard], component: InstructorHomeComponent, children: [
           { path: '', component: DashboardComponent },
           { path: 'myCourses', component: CoursesComponent },
+          { path: 'createCourse', component: CreateCourseComponent },
         ]
       },
       { path: 'login', canActivate: [AuthGuard], component: LoginComponent },

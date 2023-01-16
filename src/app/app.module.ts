@@ -13,7 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './instructor-home/header/header.component';
 import { SideBarComponent } from './instructor-home/side-bar/side-bar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordValidatingDirective } from './shared/directives/password-validate.directive';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
@@ -21,6 +21,7 @@ import { VerifyEmailComponent } from './auth/verify-email/verify-email.component
 import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
 import { CourseComponent } from './instructor-home/courses/course/course.component';
+import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CourseComponent } from './instructor-home/courses/course/course.compone
     VerifyEmailComponent,
     CoursesComponent,
     DashboardComponent,
-    CourseComponent
+    CourseComponent,
+    CreateCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { CourseComponent } from './instructor-home/courses/course/course.compone
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects])
   ],
