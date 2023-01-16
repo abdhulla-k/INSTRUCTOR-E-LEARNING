@@ -5,6 +5,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { switchMap, map } from 'rxjs/operators';
 
 import * as AuthActions from './auth.actions';
+import { environment } from "src/environments/environment";
 
 type loginResponse = { jwtToken: string, message: string, loggedIn: boolean, time: number };
 type singupResponse = { sigupStatus: boolean, message: string };
@@ -106,7 +107,9 @@ export class AuthEffects {
     )
   );
 
-  baseRoute = 'http://localhost:3000/instructor';
+  baseRoute!: string;
 
-  constructor(private actions$: Actions, private http: HttpClient, private router: Router) { }
+  constructor(private actions$: Actions, private http: HttpClient, private router: Router) {
+    this.baseRoute = environment.baseUrl;
+   }
 }
