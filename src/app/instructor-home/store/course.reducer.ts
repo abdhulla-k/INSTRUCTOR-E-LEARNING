@@ -1,13 +1,16 @@
 import * as CourseActions from './course.actions';
+import { Course } from '../../shared/models/course';
 
 export interface State {
     courseCreationStatus: boolean;
-    courseId: string
+    courseId: string;
+    courses: Course[]
 }
 
 const initialState: State = {
     courseCreationStatus: false,
-    courseId: ''
+    courseId: '',
+    courses: []
 }
 
 export function courseReducer(state: State = initialState, action: CourseActions.CourseActions) {
