@@ -2,10 +2,12 @@ import * as CourseActions from './course.actions';
 
 export interface State {
     courseCreationStatus: boolean;
+    courseId: string
 }
 
 const initialState: State = {
-    courseCreationStatus: false
+    courseCreationStatus: false,
+    courseId: ''
 }
 
 export function courseReducer(state: State = initialState, action: CourseActions.CourseActions) {
@@ -19,6 +21,11 @@ export function courseReducer(state: State = initialState, action: CourseActions
             return {
                 ...state,
                 courseCreationStatus: false
+            }
+        case CourseActions.EDITING_ID:
+            return {
+                ...state,
+                courseId: action.payload
             }
         default: 
             return {
