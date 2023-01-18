@@ -1,21 +1,7 @@
-<section>
-    <div class="container py-2">
-
-        <article style="border: 2px solid black; margin-bottom: 0px; padding-bottom: 0px; padding-top: 0px;" class="postcard light blue">
-            <a class="postcard__img_link" href="#">
-                <img style="min-height: 200px; max-width: 350px; max-height: 210px;" class="postcard__img"
-                    src="{{ imgUrl }}" alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
-                <div class="postcard__subtitle small">
-                </div>
-                <div>{{ description }}</div>
-                <ul class="postcard__tagbox">
-                    <li class="tag__item"><i class="fas fa-tag mr-2"></i>Edit</li>
-                    <li class="tag__item"><i class="fas fa-clock mr-2"></i>Delete</li>
-                </ul>
-            </div>
-        </article>
+<div class="card" style="margin: 5px;">
+    <img class="card-img-top" src="{{ imgUrl }}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">{{ description }}</p>
     </div>
-</section>
+</div>

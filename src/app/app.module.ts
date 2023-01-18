@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordValidatingDirective } from './shared/directives/password-validate.directive';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
+import { CourseEffects } from './instructor-home/store/course.effects';
 import { VerifyEmailComponent } from './auth/verify-email/verify-email.component';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
@@ -47,7 +48,7 @@ import { CreateCourseComponent } from './instructor-home/create-course/create-co
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, CourseEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

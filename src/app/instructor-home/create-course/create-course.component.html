@@ -10,13 +10,8 @@
             </div>
             <div class="col">
                 <label for="inputEmail4">Image</label>
-                <input 
-                    #imageInput
-                    formControlName="main-image" 
-                    type="file" 
-                    accept="image/x-png,image/gif,image/jpeg"
-                    (change)="processFile(imageInput)"
-                    class="form-control">
+                <input #imageInput formControlName="main-image" type="file" accept="image/x-png,image/gif,image/jpeg"
+                    (change)="processFile($event)" class="form-control">
             </div>
         </div>
         <!-- <div class="form-group">
@@ -25,11 +20,12 @@
         </div> -->
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Description</label>
-            <textarea formControlName="course-description" class="form-control" rows="3"></textarea>
+            <textarea formControlName="description" class="form-control" rows="3"></textarea>
         </div>
+        <!--         
         <div style="margin-top: 5px;" *ngIf="!courceForm.valid && courceForm.touched" class="alert alert-danger" role="alert">
             Make sure you filled all the fields
-        </div>
+        </div> -->
         <br>
         <button [disabled]="courceForm.invalid" type="submit" class="btn btn-dark">Create Course</button>
     </form>
