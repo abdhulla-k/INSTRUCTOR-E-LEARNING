@@ -12,6 +12,7 @@ import { HomeAuthGuard } from './auth-guards/home-protect.service';
 import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
 import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
+import { CourseDetailsComponent } from './instructor-home/courses/course/course-details/course-details.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,9 @@ const routes: Routes = [
       {
         path: '', canActivate: [HomeAuthGuard], component: InstructorHomeComponent, children: [
           { path: '', component: DashboardComponent },
-          { path: 'myCourses', component: CoursesComponent },
           { path: 'createCourse', component: CreateCourseComponent },
+          { path: 'myCourses', component: CoursesComponent },
+          { path: 'myCourses/details/:id', component: CourseDetailsComponent}
         ]
       },
       { path: 'login', canActivate: [AuthGuard], component: LoginComponent },

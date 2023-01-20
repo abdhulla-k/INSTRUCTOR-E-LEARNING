@@ -28,4 +28,8 @@ export class CoursesService {
   fetchCourses(section: number) {
     return this.http.get<Observable<Course[]>>(`http://localhost:3000/instructor/getCourses/${section}`)
   }
+
+  getCourseDetails(id: string) {
+    return this.http.get(`http://localhost:3000/instructor/details/${id}`)
+  }
 }

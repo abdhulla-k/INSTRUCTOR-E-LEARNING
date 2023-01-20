@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Course } from 'src/app/shared/models/course';
 
@@ -7,6 +7,9 @@ import { Course } from 'src/app/shared/models/course';
   templateUrl: './course.component.html',
   styleUrls: ['./course.component.css']
 })
-export class CourseComponent {
-  @Input() course!: Course;
+export class CourseComponent implements OnInit {
+  @Input() course!: Course | any;
+
+  ngOnInit() {
+  }
 }

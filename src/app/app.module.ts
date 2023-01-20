@@ -23,6 +23,7 @@ import { CoursesComponent } from './instructor-home/courses/courses.component';
 import { DashboardComponent } from './instructor-home/dashboard/dashboard.component';
 import { CourseComponent } from './instructor-home/courses/course/course.component';
 import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
+import { CourseDetailsComponent } from './instructor-home/courses/course/course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CreateCourseComponent } from './instructor-home/create-course/create-co
     CoursesComponent,
     DashboardComponent,
     CourseComponent,
-    CreateCourseComponent
+    CreateCourseComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,
