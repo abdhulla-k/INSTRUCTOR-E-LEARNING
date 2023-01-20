@@ -24,6 +24,7 @@ import { DashboardComponent } from './instructor-home/dashboard/dashboard.compon
 import { CourseComponent } from './instructor-home/courses/course/course.component';
 import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
 import { CourseDetailsComponent } from './instructor-home/courses/course/course-details/course-details.component';
+import { FooterComponent } from './instructor-home/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CourseDetailsComponent } from './instructor-home/courses/course/course-
     DashboardComponent,
     CourseComponent,
     CreateCourseComponent,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
