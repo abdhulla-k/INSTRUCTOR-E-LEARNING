@@ -1,6 +1,6 @@
 <div class="container" style="min-height: 80vh;">
     <div class="courses-cont">
-        <app-course *ngFor="let i of courses" [course]="i"></app-course>
+        <app-course *ngFor="let i of courses let index = index" [course]="i" [index]="index"></app-course>
     </div>
     <div class="container">
         <button 

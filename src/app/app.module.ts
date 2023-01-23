@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { FooterComponent } from './instructor-home/footer/footer.component';
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(fromApp.appReducer),

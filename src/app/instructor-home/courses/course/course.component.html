@@ -9,6 +9,7 @@
         <!-- iconse and links -->
         <div class="mask-icon">
             <ul>
+                <!-- see details -->
                 <li>
                     <a 
                         [routerLink]="['/instructor', 'myCourses', 'details', course._id]"
@@ -21,7 +22,9 @@
                         </fa-icon>
                     </a>
                 </li>
+                <!-- /see details -->
 
+                <!-- edit course -->
                 <li>
                     <a
                         href="#"
@@ -34,9 +37,12 @@
                         </fa-icon>
                     </a>
                 </li>
+                <!-- /edit course -->
+
+                <!-- delete course -->
                 <li>
                     <a
-                        href="#"
+                        (click)="deleteCourse()"
                         data-toggle="tooltip"
                         data-placement="right"
                         title="Delete">
@@ -46,6 +52,8 @@
                         </fa-icon>
                     </a>
                 </li>
+                <!-- /delete course -->
+
             </ul>
         </div>
         <!-- /icons and links -->

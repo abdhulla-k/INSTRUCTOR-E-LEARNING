@@ -13,9 +13,10 @@ export class CoursesComponent implements OnInit {
   courses: Course[] = [];
 
   constructor(private CourseService: CoursesService) { }
+  
   ngOnInit(): void {
-    this.CourseService.fetchCourses(0).subscribe((courses: Course[] | any) => {
-      console.log(courses);
+    this.CourseService.fetchCourses(0);
+    this.CourseService.courseUpdate.subscribe((courses: Course[]) => {
       this.courses = courses;
     })
   }
