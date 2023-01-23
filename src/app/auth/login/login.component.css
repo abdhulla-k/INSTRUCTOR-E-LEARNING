@@ -98,7 +98,11 @@ input.ng-invalid.ng-touched {
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
     .section-right {
-        padding: 220px 150px 220px 80px;
+        /* padding: 220px 150px 220px 80px; */
+        padding-top: 45%;
+        padding-bottom: 45%;
+        padding-right: 10%;
+        padding-left: 10%;
         background-color: rgb(32.2%, 47.5%, 43.5%);
         width: 80%;
         border-top-left-radius: 35px;

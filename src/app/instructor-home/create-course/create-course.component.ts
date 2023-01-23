@@ -72,6 +72,7 @@ export class CreateCourseComponent implements OnInit {
       if(response.status) {
         this.createStatus = true;
         this.courseData = response;
+        this.courseId = response.id
         this.store.dispatch(new CourseActions.EditId(response.id));
       }
     })
@@ -83,7 +84,11 @@ export class CreateCourseComponent implements OnInit {
   }
 
   addModule() {
+    console.log(this.courseId)
     this.moduleFormData.append('title', this.moduleForm.value.videoTitle);
-    this.courseService.saveModule(this.moduleFormData, this.courseId);
+    this.courseService.saveModule(this.moduleFormData, this.courseId).subscribe(data => {
+      console.log(data);
+      // this.course = data;
+    })
   }
 }

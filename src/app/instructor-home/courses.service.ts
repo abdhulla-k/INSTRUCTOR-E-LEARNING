@@ -20,9 +20,8 @@ export class CoursesService {
   }
 
   saveModule(formData: FormData, id: string) {
-    this.http.post<courseCreateResponse>(`http://localhost:3000/instructor/${id}/module`, formData).subscribe(data => {
-      console.log(data);
-    })
+    console.log(id);
+    return this.http.post<courseCreateResponse>(`http://localhost:3000/instructor/${id}/module`, formData)
   }
 
   fetchCourses(section: number) {
