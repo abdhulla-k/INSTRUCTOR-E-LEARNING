@@ -42,6 +42,10 @@ export class CourseDetailsComponent implements OnInit {
       'video': new FormControl('', Validators.required),
       'question': new FormControl('', Validators.required),
     })
+
+    this.courseService.deletedModuleIndex.subscribe((index: number) => {
+      this.course.modules.splice(index, 1);
+    })
   }
 
   changeModule(event: any) {
@@ -74,5 +78,9 @@ export class CourseDetailsComponent implements OnInit {
     this.moduleFormData.append(key, event.target.files[0]);
     console.log(key)
     // console.log(event.target.files[0])
+  }
+
+  deleteModule(event: {moduleId: string, index: number}) {
+    this.courseService.deleteModule(event.moduleId, this.id, event.index);
   }
 }

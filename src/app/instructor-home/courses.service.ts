@@ -7,6 +7,7 @@ import { courseCreateResponse } from '../shared/models/course-create-response';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Course } from '../shared/models/course';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ import { Course } from '../shared/models/course';
 export class CoursesService {
   courses: Course[] = [];
   courseUpdate = new EventEmitter();
+  deletedModuleIndex = new EventEmitter<number>()
 
   constructor(private http: HttpClient, private store: Store<appState.AppState>, private router: Router) { }
 
@@ -42,6 +44,14 @@ export class CoursesService {
     this.http.delete(`http://localhost:3000/instructor/delete/${id}`).subscribe(response => {
       this.courses.splice(index, 1);
       this.courseUpdate.emit(this.courses);
+    })
+  }
+
+  deleteModule(moduleId: String, courseId: string, index: number) {
+    this.http.delete(`${environment.baseUrl}/deleteModule/${courseId}/${moduleId}`).subscribe(data => {
+      if(data) {
+        this.deletedModuleIndex.emit(index);
+      }
     })
   }
 }
