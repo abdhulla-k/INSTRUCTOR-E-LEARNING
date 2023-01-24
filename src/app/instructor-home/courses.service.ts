@@ -47,9 +47,17 @@ export class CoursesService {
     })
   }
 
+  updateModule(courseId: string, moduleId: string, formData: FormData,) {
+    console.log(`courseId: ${courseId}, moduleId: ${moduleId}`);
+    this.http.post(`${environment.baseUrl}/updateModule/${courseId}/${moduleId}`, formData)
+      .subscribe(response => {
+        console.log(response)
+      })
+  }
+
   deleteModule(moduleId: String, courseId: string, index: number) {
     this.http.delete(`${environment.baseUrl}/deleteModule/${courseId}/${moduleId}`).subscribe(data => {
-      if(data) {
+      if (data) {
         this.deletedModuleIndex.emit(index);
       }
     })

@@ -61,15 +61,19 @@ export class CourseDetailsComponent implements OnInit {
 
   addNewModule() {
     if (this.moduleForm.valid) {
+      this.moduleFormData.delete('title');
+      this.moduleFormData.append('title', this.moduleForm.value.videoTitle);
+      
       if (this.addModule) {
-        console.log('adding');
-        this.moduleFormData.delete('title');
-        this.moduleFormData.append('title', this.moduleForm.value.videoTitle);
         this.courseService.saveModule(this.moduleFormData, this.id).subscribe(data => {
           this.course.modules.push(data.courseData.modules[this.course.modules.length])
         })
       } else {
-        console.log('editing')
+        this.courseService.updateModule(
+          this.id,
+          this.selectedModule._id,
+          this.moduleFormData
+        )
       }
     }
   }
@@ -80,7 +84,7 @@ export class CourseDetailsComponent implements OnInit {
     // console.log(event.target.files[0])
   }
 
-  deleteModule(event: {moduleId: string, index: number}) {
+  deleteModule(event: { moduleId: string, index: number }) {
     this.courseService.deleteModule(event.moduleId, this.id, event.index);
   }
 }
