@@ -84,11 +84,11 @@ export class CreateCourseComponent implements OnInit {
   }
 
   addModule() {
-    console.log(this.courseId)
+    this.moduleFormData.delete('title');
     this.moduleFormData.append('title', this.moduleForm.value.videoTitle);
     this.courseService.saveModule(this.moduleFormData, this.courseId).subscribe(data => {
       console.log(data);
-      // this.course = data;
+      // this.moduleForm.reset();
     })
   }
 }

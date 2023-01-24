@@ -1,11 +1,103 @@
 <div class="container">
-    <div><h1 style="font-family: 'Courier New', Courier, monospace;"><b>{{ course.title }}</b></h1></div>
-    <video style="background-color: white; margin: 0; padding: 0;" class="col-9" controls>
+    <div>
+        <h1
+            style="font-family: 'Courier New', Courier, monospace;">
+            <b>
+                {{ course.title }}
+            </b>
+        </h1>
+    </div>
+    <video 
+        style="background-color: white; margin: 0; padding: 0;"
+        class="col-9"
+        controls>
         <!-- <div style="background-color: black;"><h4 style="font-family: 'Courier New', Courier, monospace;">{{ course.title }}</h4></div> -->
-        <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4">
+        <source
+            src="https://mdbcdn.b-cdn.net/img/video/forest.mp4"
+            type="video/mp4"
+            >
         Your browser does not support the video tag.
     </video>
-    <div class="col-3" style="float: right;">
-        <div *ngFor="let i of course.modules" class="col-11" style="float: right; background-color: #D9D9D9; margin: 2px; padding: 2px;">{{ i.videoTitle }}</div>
+    <div 
+        class="col-3"
+        style="float: right;">
+        <app-course-module
+            (moduleTransfer)="changeModule($event)"
+            *ngFor="let i of course.modules"
+            [module]="i"
+            class="col-11"
+            style="float: right; background-color: #D9D9D9; margin: 2px; padding: 2px;">
+        </app-course-module>
+    </div>
+    <div style="background-color: #D9D9D9; width: 75%; height: 200px;">
+
+        <form 
+            enctype="application/x-www-form-urlencoded"
+            [formGroup]="moduleForm"
+            enctype="application/x-www-form-urlencoded"
+            (ngSubmit)="addNewModule()"
+        >
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Video Title</label>
+                <input
+                    formControlName="videoTitle" 
+                    type="text"
+                    class="form-control" 
+                    placeholder="Angular Basics"
+                >
+            </div>
+            <div class="col">
+                <label for="inputEmail4">Video</label>
+                <input
+                    type="file" 
+                    formControlName="video"
+                    (change)="saveFile('video',$event)"
+                    accept="Video/*" 
+                    class="form-control"
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Notes</label>
+                <input
+                    type="file" 
+                    (change)="saveFile('note',$event)"
+                    accept="application/pdf" 
+                    formControlName="note"
+                    class="form-control"
+                >
+            </div>
+            <div class="col">
+                <label for="inputEmail4">Question</label>
+                <input
+                    type="file" 
+                    accept="application/pdf" 
+                    (change)="saveFile('question',$event)"
+                    formControlName="question"
+                    class="form-control"
+                >
+            </div>
+        </div>
+        <br>
+        <button
+            [disabled]="moduleForm.invalid"
+            type="submit" 
+            class="btn btn-dark"
+            style="margin-right: 5px;"
+            >
+            <span *ngIf="!addModule">Update Module</span>
+            <span *ngIf="addModule">Add Module</span>
+        </button>
+        <button
+            (click)="switchToAddModule()"
+            class="btn btn-dark"
+            type="button"
+            >
+            <span *ngIf="!addModule">Switch To Add</span>
+            <span *ngIf="addModule">Switch To Update</span>
+        </button>
+    </form>
     </div>
 </div>

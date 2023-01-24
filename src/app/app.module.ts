@@ -26,6 +26,7 @@ import { CourseComponent } from './instructor-home/courses/course/course.compone
 import { CreateCourseComponent } from './instructor-home/create-course/create-course.component';
 import { CourseDetailsComponent } from './instructor-home/courses/course/course-details/course-details.component';
 import { FooterComponent } from './instructor-home/footer/footer.component';
+import { ModuleComponent } from './instructor-home/courses/course/course-details/module/module.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FooterComponent } from './instructor-home/footer/footer.component';
     CourseComponent,
     CreateCourseComponent,
     CourseDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    ModuleComponent
   ],
   imports: [
     BrowserModule,
