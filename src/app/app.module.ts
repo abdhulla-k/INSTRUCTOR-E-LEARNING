@@ -27,8 +27,10 @@ import { CreateCourseComponent } from './instructor-home/create-course/create-co
 import { CourseDetailsComponent } from './instructor-home/courses/course/course-details/course-details.component';
 import { FooterComponent } from './instructor-home/footer/footer.component';
 import { ModuleComponent } from './instructor-home/courses/course/course-details/module/module.component';
-import { SuccessMessageComponent } from './shared/components/success-message/success-message.component';
 import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
+import { SuccessMessageDirective } from './shared/directives/success-message.directive';
+import { ErrorMessageDirective } from './shared/directives/error-message.directive';
+import { SuccessMessageComponent } from './shared/components/success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -48,8 +50,10 @@ import { ErrorMessageComponent } from './shared/components/error-message/error-m
     CourseDetailsComponent,
     FooterComponent,
     ModuleComponent,
-    SuccessMessageComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    SuccessMessageDirective,
+    ErrorMessageDirective,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,

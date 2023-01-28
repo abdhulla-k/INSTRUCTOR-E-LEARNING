@@ -15,7 +15,6 @@ export class ErrorMessageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.errorSubscription = this.messageService.errorMessageEmitter.subscribe(data => {
       this.errorMessage = data;
-      console.log(this.errorMessage, 'from error component')
     })
   }
 

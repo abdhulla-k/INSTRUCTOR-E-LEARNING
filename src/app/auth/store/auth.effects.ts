@@ -6,6 +6,7 @@ import { switchMap, map } from 'rxjs/operators';
 
 import * as AuthActions from './auth.actions';
 import { environment } from "src/environments/environment";
+import { MessagesService } from "src/app/messages.service";
 
 type loginResponse = { jwtToken: string, message: string, loggedIn: boolean, time: number };
 type singupResponse = { sigupStatus: boolean, message: string };
@@ -33,6 +34,7 @@ export class AuthEffects {
                 // save the token in local storage
                 localStorage.setItem('instructorData', JSON.stringify(response))
                 // set a timer to clear the local Storage
+                this.MessageService.successMessageEmitter.emit(response.message)
                 setTimeout(() => {
                   localStorage.clear();
                 }, response.time)
@@ -42,6 +44,7 @@ export class AuthEffects {
                 return new AuthActions.LoginEnd(true);
               } else {
                 // make loggedInStatus false. Because login failed
+                this.MessageService.errorMessageEmitter.emit(response.message)
                 return new AuthActions.LoginEnd(false);
               }
             })
@@ -109,7 +112,12 @@ export class AuthEffects {
 
   baseRoute!: string;
 
-  constructor(private actions$: Actions, private http: HttpClient, private router: Router) {
+  constructor(
+    private actions$: Actions,
+    private http: HttpClient,
+    private router: Router,
+    private MessageService: MessagesService
+  ) {
     this.baseRoute = environment.baseUrl;
-   }
+  }
 }
