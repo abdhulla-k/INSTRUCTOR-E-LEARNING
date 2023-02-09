@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { CoursesService } from 'src/app/instructor-home/courses.service';
+import { MessagesService } from 'src/app/messages.service';
 
 @Component({
   selector: 'app-course-details',
@@ -20,7 +21,8 @@ export class CourseDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private courseService: CoursesService,
-    private router: Router
+    private router: Router,
+    private messageService: MessagesService
   ) { }
 
   ngOnInit() {
@@ -67,6 +69,7 @@ export class CourseDetailsComponent implements OnInit {
       if (this.addModule) {
         this.courseService.saveModule(this.moduleFormData, this.id).subscribe(data => {
           this.course.modules.push(data.courseData.modules[this.course.modules.length])
+          this.messageService.successMessageEmitter.emit(data.message);
         })
       } else {
         this.courseService.updateModule(

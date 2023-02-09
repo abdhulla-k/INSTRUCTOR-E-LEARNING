@@ -6,6 +6,7 @@ import { CoursesService } from '../courses.service';
 import { courseCreateResponse } from '../../shared/models/course-create-response';
 import * as fromAppStore from '../../store/app.reducer';
 import * as CourseActions from '../../instructor-home/store/course.actions';
+import { MessagesService } from 'src/app/messages.service';
 
 @Component({
   selector: 'app-create-course',
@@ -23,7 +24,8 @@ export class CreateCourseComponent implements OnInit {
 
   constructor(
     private courseService: CoursesService,
-    private store: Store<fromAppStore.AppState>
+    private store: Store<fromAppStore.AppState>,
+    private messageService: MessagesService
   ) { }
 
   ngOnInit() {
@@ -72,7 +74,8 @@ export class CreateCourseComponent implements OnInit {
       if(response.status) {
         this.createStatus = true;
         this.courseData = response;
-        this.courseId = response.id
+        this.courseId = response.id;
+        this.messageService.successMessageEmitter.emit(response.message);
         this.store.dispatch(new CourseActions.EditId(response.id));
       }
     })
@@ -87,8 +90,7 @@ export class CreateCourseComponent implements OnInit {
     this.moduleFormData.delete('title');
     this.moduleFormData.append('title', this.moduleForm.value.videoTitle);
     this.courseService.saveModule(this.moduleFormData, this.courseId).subscribe(data => {
-      console.log(data);
-      // this.moduleForm.reset();
+      this.messageService.successMessageEmitter.emit(data.message);
     })
   }
 }

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Course } from '../shared/models/course';
 import { environment } from 'src/environments/environment.prod';
+import { MessagesService } from '../messages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,12 @@ export class CoursesService {
   courseUpdate = new EventEmitter();
   deletedModuleIndex = new EventEmitter<number>()
 
-  constructor(private http: HttpClient, private store: Store<appState.AppState>, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private store: Store<appState.AppState>,
+    private router: Router,
+    private messageService: MessagesService
+  ) { }
 
   createCourse(formData: FormData): Observable<courseCreateResponse> {
     return this.http.post<courseCreateResponse>('http://localhost:3000/instructor/createCourse', formData);
@@ -41,25 +47,29 @@ export class CoursesService {
   }
 
   deleteCourse(id: string, index: number) {
-    this.http.delete(`http://localhost:3000/instructor/delete/${id}`).subscribe(response => {
+    this.http.delete(`http://localhost:3000/instructor/delete/${id}`).subscribe((response: any) => {
       this.courses.splice(index, 1);
       this.courseUpdate.emit(this.courses);
+      this.messageService.successMessageEmitter.emit(response.message)
     })
   }
 
   updateModule(courseId: string, moduleId: string, formData: FormData,) {
     console.log(`courseId: ${courseId}, moduleId: ${moduleId}`);
     this.http.post(`${environment.baseUrl}/updateModule/${courseId}/${moduleId}`, formData)
-      .subscribe(response => {
+      .subscribe((response: any) => {
         console.log(response)
+        this.messageService.successMessageEmitter.emit(response.message)
       })
   }
 
   deleteModule(moduleId: String, courseId: string, index: number) {
-    this.http.delete(`${environment.baseUrl}/deleteModule/${courseId}/${moduleId}`).subscribe(data => {
-      if (data) {
-        this.deletedModuleIndex.emit(index);
-      }
-    })
+    this.http.delete(`${environment.baseUrl}/deleteModule/${courseId}/${moduleId}`)
+      .subscribe((data: any) => {
+        if (data) {
+          this.deletedModuleIndex.emit(index);
+          this.messageService.successMessageEmitter.emit(data.message)
+        }
+      })
   }
 }
