@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { CoursesService } from 'src/app/instructor-home/courses.service';
 import { MessagesService } from 'src/app/messages.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-course-details',
@@ -15,7 +16,7 @@ export class CourseDetailsComponent implements OnInit {
   course: any;
   selectedModule: any;
   moduleFormData = new FormData();
-  videoPath: string = 'https://mdbcdn.b-cdn.net/img/video/forest.mp4'
+  videoPath: string = ''
   moduleForm!: FormGroup;
   addModule = false;
   constructor(
@@ -30,6 +31,7 @@ export class CourseDetailsComponent implements OnInit {
       this.id = data['id'];
       this.courseService.getCourseDetails(this.id).subscribe(data => {
         this.course = data;
+        this.videoPath = `${environment.fileGettUrl}${this.course.modules[0].videoPath}`
         this.selectedModule = this.course.modules[0];
         // set the default title to form
         this.moduleForm.patchValue({
@@ -52,6 +54,8 @@ export class CourseDetailsComponent implements OnInit {
 
   changeModule(event: any) {
     this.selectedModule = event;
+    // change video path
+    this.videoPath = `${environment.fileGettUrl}${event.videoPath}`;
     this.moduleForm.patchValue({
       videoTitle: event.videoTitle
     })

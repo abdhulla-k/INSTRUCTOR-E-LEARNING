@@ -31,6 +31,7 @@ import { ErrorMessageComponent } from './shared/components/error-message/error-m
 import { SuccessMessageDirective } from './shared/directives/success-message.directive';
 import { ErrorMessageDirective } from './shared/directives/error-message.directive';
 import { SuccessMessageComponent } from './shared/components/success-message/success-message.component';
+import { PlayComponent } from './instructor-home/courses/course/course-details/play/play.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { SuccessMessageComponent } from './shared/components/success-message/suc
     ErrorMessageComponent,
     SuccessMessageDirective,
     ErrorMessageDirective,
-    SuccessMessageComponent
+    SuccessMessageComponent,
+    PlayComponent
   ],
   imports: [
     BrowserModule,
