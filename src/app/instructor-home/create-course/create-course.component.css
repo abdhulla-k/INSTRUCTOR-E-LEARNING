@@ -4,3 +4,14 @@ input.ng-invalid.ng-touched {
 textarea.ng-invalid.ng-touched {
     border: 1px solid red;
 }
+
+.container {
+    min-height: 80vh;
+}
+
+@media screen and (min-width: 280px) and (max-width: 600px) {
+
+    .container {
+        height: 400px;
+    }
+}

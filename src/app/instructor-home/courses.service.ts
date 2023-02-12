@@ -26,16 +26,16 @@ export class CoursesService {
   ) { }
 
   createCourse(formData: FormData): Observable<courseCreateResponse> {
-    return this.http.post<courseCreateResponse>('http://localhost:3000/instructor/createCourse', formData);
+    return this.http.post<courseCreateResponse>(`${environment.baseUrl}/createCourse`, formData);
   }
 
   saveModule(formData: FormData, id: string) {
     console.log(id);
-    return this.http.post<courseCreateResponse>(`http://localhost:3000/instructor/${id}/module`, formData);
+    return this.http.post<courseCreateResponse>(`${environment.baseUrl}/${id}/module`, formData);
   }
 
   fetchCourses(section: number) {
-    this.http.get<Observable<Course[]>>(`http://localhost:3000/instructor/getCourses/${section}`)
+    this.http.get<Observable<Course[]>>(`${environment.baseUrl}/getCourses/${section}`)
       .subscribe((courses: Course[] | any) => {
         this.courses = courses;
         this.courseUpdate.emit(courses);
@@ -43,11 +43,11 @@ export class CoursesService {
   }
 
   getCourseDetails(id: string) {
-    return this.http.get(`http://localhost:3000/instructor/details/${id}`);
+    return this.http.get(`${environment.baseUrl}/details/${id}`);
   }
 
   deleteCourse(id: string, index: number) {
-    this.http.delete(`http://localhost:3000/instructor/delete/${id}`).subscribe((response: any) => {
+    this.http.delete(`${environment.baseUrl}/delete/${id}`).subscribe((response: any) => {
       this.courses.splice(index, 1);
       this.courseUpdate.emit(this.courses);
       this.messageService.successMessageEmitter.emit(response.message)
