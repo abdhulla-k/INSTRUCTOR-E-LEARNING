@@ -1,0 +1,65 @@
+<div style="margin: 5px;" class="products-single fix">
+    <div class="box-img-hover">
+        <img 
+            src="{{filegetterUrl}}{{ course.imgPath }}"
+            style="max-height: 250px; min-height: 250px;"
+            class="img-fluid"
+            alt="Image"
+            >
+        <!-- iconse and links -->
+        <div class="mask-icon">
+            <ul>
+                <!-- see details -->
+                <li>
+                    <a 
+                        [routerLink]="['/instructor', 'myCourses', 'details', course._id]"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="View">
+                        <fa-icon 
+                            [icon]="eye"
+                            class="toggle-menue hide-menue">
+                        </fa-icon>
+                    </a>
+                </li>
+                <!-- /see details -->
+
+                <!-- edit course -->
+                <li>
+                    <a
+                        href="#"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Edit">
+                        <fa-icon
+                            [icon]="edit"
+                            class="toggle-menue hide-menue">
+                        </fa-icon>
+                    </a>
+                </li>
+                <!-- /edit course -->
+
+                <!-- delete course -->
+                <li>
+                    <a
+                        (click)="deleteCourse()"
+                        data-toggle="tooltip"
+                        data-placement="right"
+                        title="Delete">
+                        <fa-icon 
+                            [icon]="delete"
+                            class="toggle-menue hide-menue">
+                        </fa-icon>
+                    </a>
+                </li>
+                <!-- /delete course -->
+
+            </ul>
+        </div>
+        <!-- /icons and links -->
+    </div>
+    <div class="why-text">
+        <h4>{{ course.title }}</h4>
+        <h5>₹ {{ course.price }}</h5>
+    </div>
+</div>

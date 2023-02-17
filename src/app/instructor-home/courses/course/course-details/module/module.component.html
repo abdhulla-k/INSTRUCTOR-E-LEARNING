@@ -1,0 +1,11 @@
+<div style="display: flex; justify-content: space-between;">
+    <p 
+        (click)="transferData()"
+        style="margin: 0px; padding: 0px; cursor: pointer;">{{ module.videoTitle }}
+    </p>
+    <fa-icon
+        style="float: right; color: red; cursor: pointer;"
+        [icon]="deleteIcon" class="toggle-menue hide-menue"
+        (click)="deleteModule()">
+    </fa-icon>
+</div>

@@ -1,0 +1,13 @@
+<div class="container" style="min-height: 80vh;">
+    <div class="courses-cont">
+        <app-course *ngFor="let i of courses let index = index" [course]="i" [index]="index"></app-course>
+    </div>
+    <div class="container">
+        <button 
+            [routerLink]="['/instructor/createCourse']"
+            style="width: 100px;"
+            class="btn btn-dark">
+                Add new
+        </button>
+    </div>
+</div>

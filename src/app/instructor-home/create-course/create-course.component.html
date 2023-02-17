@@ -1,0 +1,136 @@
+<div class="container" style="margin-top: 20px;">
+    <div style="width: 100%; text-align: center; margin-bottom: 30px;">
+        <h4 *ngIf="!createStatus"><u><b>Create New Course</b></u></h4>
+        <h4 *ngIf="createStatus"><u><b>Add modules or Edit Course</b></u></h4>
+    </div>
+
+    <!-- course creation form -->
+    <form 
+        *ngIf="!createStatus" 
+        [formGroup]="courceForm" 
+        (ngSubmit)="onSubmit()"
+        enctype="application/x-www-form-urlencoded"
+        >
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Title</label>
+                <input 
+                    formControlName="title" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Angular Full Course"
+                >
+            </div>
+
+            <div class="col">
+                <label for="inputEmail4">Image</label>
+                <input 
+                    #imageInput 
+                    formControlName="main-image" 
+                    type="file" 
+                    accept="image/x-png,image/gif,image/jpeg/"
+                    (change)="processFile($event)" class="form-control"
+                >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Price</label>
+                <input 
+                    formControlName="price" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="3000"
+                >
+            </div>
+            <div class="col">
+                <label for="inputEmail4">Teacher</label>
+                <input 
+                    formControlName="teacher" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="name"
+                >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea 
+                formControlName="description" 
+                class="form-control" 
+                rows="3">
+            </textarea>
+        </div>
+        <br>
+        <button 
+            [disabled]="courceForm.invalid" 
+            type="submit" 
+            class="btn btn-dark">
+                Create Course
+        </button>
+    </form>
+    <!-- /course creation form -->
+
+    <!-- add module form -->
+    <form 
+        *ngIf="createStatus" 
+        [formGroup]="moduleForm" 
+        (ngSubmit)="addModule()"
+        enctype="application/x-www-form-urlencoded"
+        >
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Video Title</label>
+                <input 
+                    formControlName="videoTitle" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Angular Basics"
+                >
+            </div>
+            <div class="col">
+                <label for="inputEmail4">Video</label>
+                <input 
+                    (change)="saveFile('video',$event)"
+                    formControlName="video"
+                    type="file" 
+                    accept="Video/*" 
+                    class="form-control"
+                >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="inputEmail4">Notes</label>
+                <input 
+                    (change)="saveFile('note',$event)"
+                    formControlName="note"
+                    type="file" 
+                    accept="application/pdf" 
+                    class="form-control"
+                >
+            </div>
+            <div class="col">
+                <label for="inputEmail4">Question</label>
+                <input 
+                    (change)="saveFile('question',$event)"
+                    formControlName="question"
+                    type="file" 
+                    accept="application/pdf" 
+                    class="form-control"
+                >
+            </div>
+        </div>
+        <br>
+        <button 
+            [disabled]="moduleForm.invalid"
+            type="submit" 
+            class="btn btn-dark"
+            >
+            Save
+        </button>
+    </form>
+    <!-- /add module form -->
+</div>
